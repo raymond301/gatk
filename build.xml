@@ -608,8 +608,11 @@
                  docletpathref="doclet.classpath"
                  classpathref="external.dependencies"
                  classpath="${java.classes}"
-		 maxmemory="2g"
-                 additionalparam="-build-timestamp &quot;${build.timestamp}&quot; -absolute-version ${build.version} -out ${basedir}/${resource.path} -quiet">
+				 maxmemory="2g" 
+				additionalparam="-build-timestamp &quot;${build.timestamp}&quot; -absolute-version ${build.version} -out ${basedir}/${resource.path} -quiet" 
+        		useexternalfile="yes" 
+        	> 
+        	        
             <sourcefiles>
                 <union>
                     <fileset refid="modified.source.files"/>
@@ -618,7 +621,8 @@
             </sourcefiles>
         </javadoc>
     </target>
-
+   
+    	       
 
     <!-- ******************************************************************************** -->
     <!-- Build Jars                                                                       -->
@@ -650,13 +654,13 @@
 
     <target name="sting-utils.jar" depends="gatk.compile, init.jar, R.public.tar, R.script.stage">
         <jar jarfile="${dist.dir}/StingUtils.jar">
-            <fileset dir="${java.classes}" includes="**/sting/utils/**/*.class"/>
+        	<fileset dir="${java.classes}" includes="**/sting/utils/**/*.class"/>
             <fileset dir="${java.classes}" includes="**/sting/commandline/**/*.class"/>
             <fileset dir="${java.classes}" includes="**/sting/pipeline/**/*.class"/>
             <fileset dir="${java.classes}" includes="**/sting/tools/**/*.class"/>
             <fileset dir="${java.classes}" includes="**/sting/jna/**/*.class"/>
             <fileset dir="${java.classes}" includes="net/sf/picard/**/*.class"/>
-            <fileset dir="${java.classes}" includes="net/sf/samtools/**/*.class"/>
+            <fileset dir="${java.classes}" includes="net/sf/samtools/**/*.class"/> 
             <fileset dir="${R.tar.dir}">
                 <include name="**/${R.package.path}/**/*.tar.gz"/>
             </fileset>
