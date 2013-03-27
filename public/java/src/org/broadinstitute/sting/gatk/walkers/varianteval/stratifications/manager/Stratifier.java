@@ -31,11 +31,12 @@ import java.util.List;
  * A basic interface for a class to be used with the StratificationManager system
  *
  * @author Mark DePristo
+ * @param <K> 
  * @since 3/28/12
  */
-public interface Stratifier<Object> {
+public interface Stratifier<K> {
     /**
      * @return a list of all objects states that may be provided by this States provider
      */
-    public List<Object> getAllStates();
+    public List<K> getAllStates();
 }
