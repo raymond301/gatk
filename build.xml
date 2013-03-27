@@ -526,6 +526,7 @@
             <fileset dir="${lib.dir}">
                 <include name="scala-compiler-*.jar"/>
                 <include name="scala-library-*.jar"/>
+            	<include name="scala-reflect-*.jar"/>
             </fileset>
         </path>
         <taskdef resource="scala/tools/ant/antlib.xml">
@@ -608,11 +609,10 @@
                  docletpathref="doclet.classpath"
                  classpathref="external.dependencies"
                  classpath="${java.classes}"
-				 maxmemory="2g" 
-				additionalparam="-build-timestamp &quot;${build.timestamp}&quot; -absolute-version ${build.version} -out ${basedir}/${resource.path} -quiet" 
-        		useexternalfile="yes" 
-        	> 
-        	        
+				 maxmemory="2g"
+                 useexternalfile="yes"
+				additionalparam="-build-timestamp &quot;${build.timestamp}&quot; -absolute-version ${build.version} -out ${basedir}/${resource.path} -quiet">
+
             <sourcefiles>
                 <union>
                     <fileset refid="modified.source.files"/>
@@ -1009,7 +1009,9 @@
     </target>
 
     <target name="clean.clover" depends="-check.clover" if="clover.installed">
-      <clover-clean/>
+    	<!-- Doesn't work with demo clover 
+      		<clover-clean/>
+    	-->
     </target>
 
     <target name="clean.gsalib">

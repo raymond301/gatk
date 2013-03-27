@@ -33,10 +33,11 @@ import java.io.File
 import scala.tools.nsc.reporters.AbstractReporter
 import java.lang.String
 import org.apache.log4j.Level
-import scala.tools.nsc.util.{FakePos, NoPosition, Position}
+import scala.reflect.internal.util.{FakePos, Position, NoPosition}
 import org.broadinstitute.sting.queue.util.TextFormatUtils._
 import org.broadinstitute.sting.utils.classloader.JVMUtils
-import tools.util.StringOps
+import scala.reflect.internal.util.StringOps
+
 
 /**
  * Plugin manager for QScripts which loads QScripts into the current class loader.
