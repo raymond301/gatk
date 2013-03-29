@@ -67,6 +67,13 @@ public class FSLockWithShared {
         file = baseFile;
     }
 
+    /**
+     * create a file system, given a base file to which a lock string gets appended. Sets whether to 
+     * throw exceptions on unknown failures. 
+     * 
+     * @param baseFile
+     * @param throwExceptionOnUnknownFailure
+     */
     public FSLockWithShared(File baseFile,boolean throwExceptionOnUnknownFailure) {
         this(baseFile);
         this.throwExceptionOnUnknownFailure = throwExceptionOnUnknownFailure;
@@ -108,8 +115,7 @@ public class FSLockWithShared {
             logger.warn(String.format("WARNING: Unable to lock file %s: %s.",file.getAbsolutePath(),e.getMessage()));
             if(throwExceptionOnUnknownFailure)
                 throw new FileSystemInabilityToLockException(e.getMessage(),e);
-            else
-                return false;
+			return false;
         }
         return true;
     }
@@ -138,7 +144,7 @@ public class FSLockWithShared {
                 logger.warn(String.format("WARNING: Unable to lock file %s because there is already a lock active.",file.getAbsolutePath()));
                 return false;
             }
-            else return true;
+			return true;
         }
         catch (ClosedChannelException e) {
             logger.warn(String.format("WARNING: Unable to lock file %s because the file channel is closed.",file.getAbsolutePath()));
@@ -152,8 +158,7 @@ public class FSLockWithShared {
             logger.warn(String.format("WARNING: Unable to lock file %s: %s.",file.getAbsolutePath(),e.getMessage()));
             if(throwExceptionOnUnknownFailure)
                 throw new FileSystemInabilityToLockException(e.getMessage(),e);
-            else
-                return false;
+			return false;
         }
     }
     
